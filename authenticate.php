@@ -1,18 +1,32 @@
 <?php
 
 require_once("config.php");
+require_once("session.php");
 
 if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submit'])){
     $submitted_username = $_POST['username'];
     $submitted_password = $_POST['password'];
-    $hashed_password = password_hash($submitted_password,PASSWORD_DEFAULT);
 
-    
     $sql = "SELECT * FROM users WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt = bind_param("s",$submitted_username);
-    $show = $stmt->execute();
-    echo "$show"; 
+    $stmt->bind_param("s",$submitted_username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    if($row){
+        if(password_verify($submitted_password,$row['password'])){
+            $_SESSION['userid']=$row['id'];
+            $_SESSION['user']=$row;
+            echo "User logged in successfully.";
+            echo $_SESSION['userid'];
+        }
+        else {
+            echo "Password is incorrect, please try again";
+        }
+    }
+    else {
+        echo "User does not exist in the database, try another user";
+    }
 }
 
 ?>
@@ -36,7 +50,7 @@ if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['submit'])){
             <label for="password"> Password :</label>
             <input id="password" type="password" name="password"></input>
             <br>
-            <input type="submit" value="Submit"></input>
+            <input type="submit" value="Submit" name="submit"></input>
         </form>
     </body>
 </html>
