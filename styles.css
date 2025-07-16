@@ -1,0 +1,88 @@
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* --- Global Reset & Body Styling --- */
+* {
+    /* A good practice to ensure consistent box model behavior */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5; /* A light, professional gray */
+    color: #333;
+    
+    /* Flexbox magic to center the content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures the body takes up the full screen height */
+}
+
+/* --- The Main Form Container (the "card") --- */
+/* We'll use this class for both login and register forms */
+.form-container {
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* A soft shadow for depth */
+    width: 100%;
+    max-width: 400px; /* Prevents the form from being too wide on large screens */
+    text-align: center; /* Centers the heading and submit button */
+}
+
+.form-container h1 {
+    margin-bottom: 2rem;
+    color: #2c3e50; /* A dark, muted blue for the heading */
+}
+
+/* --- Form Row Styling --- */
+/* This will contain one label and one input */
+.form-row {
+    margin-bottom: 1.5rem; /* This replaces the need for <br> tags */
+    text-align: left; /* Aligns the label and input to the left within the centered form */
+}
+
+.form-row label {
+    display: block; /* Makes the label sit on its own line */
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-row input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition for focus effect */
+}
+
+/* --- Interactive Styling for Inputs --- */
+.form-row input:focus {
+    outline: none; /* Removes the default browser outline */
+    border-color: #007bff; /* A nice blue to indicate focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+/* --- The Submit Button --- */
+.button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff; /* Primary action color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.button:hover {
+    background-color: #0056b3; /* A darker shade on hover */
+}
